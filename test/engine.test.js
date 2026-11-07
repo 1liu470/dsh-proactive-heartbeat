@@ -172,6 +172,20 @@ test("提到事里任何一个词也算有效", () => {
   assert.equal(E.classifyFeedback(p, NOW, true, "实验报告我改完了"), "engaged");
 });
 
+test("单字「好」开头的应答算有效 —— 真机上「好，我这就去写」曾被记成无视", () => {
+  const p = { at: NOW - 10 * 60, title: "交实验报告" };
+  for (const r of ["好，我这就去写", "好", "行，知道了", "嗯嗯", "可以", "没问题，马上办"]) {
+    assert.equal(E.classifyFeedback(p, NOW, true, r), "engaged", r);
+  }
+});
+
+test("单字开头但本身是别的词，不算应答", () => {
+  const p = { at: NOW - 10 * 60, title: "交实验报告" };
+  for (const r of ["好像不太对，我说的不是这个", "行业会议今年很冷清", "对方还没回复我"]) {
+    assert.equal(E.classifyFeedback(p, NOW, true, r), "ignored", r);
+  }
+});
+
 test("四十五分钟没回话算无视，但十二小时之后直接作废", () => {
   assert.equal(E.classifyFeedback({ at: NOW - 50 * 60, title: "x" }, NOW, false), "ignored");
   assert.equal(E.classifyFeedback({ at: NOW - 13 * 3600, title: "x" }, NOW, false), "expired");
