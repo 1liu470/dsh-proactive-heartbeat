@@ -1,0 +1,13 @@
+{
+  "name": "dsh-proactive-heartbeat",
+  "description": "主动心跳：把你说过的事记成账本，按显著性、打扰成本和你的反应决定何时开口，并自己组织话说出来。",
+  "version": "0.1.0",
+  "entry": {
+    "name": "dsh-proactive-heartbeat",
+    "inject": [
+      "tools",
+      "sessionController",
+      "sessions"
+    ]
+  }
+}

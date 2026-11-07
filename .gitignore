@@ -1,0 +1,5 @@
+node_modules/
+*.log
+state.json
+decisions.jsonl
+.DS_Store

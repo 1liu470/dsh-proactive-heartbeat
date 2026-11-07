@@ -1,0 +1,38 @@
+{
+  "name": "dsh-proactive-heartbeat",
+  "version": "0.1.0",
+  "description": "主动心跳：替你在合适的时候开口。记账、判断何时值得打断、自己组织话术，并记住你的反应。",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./engine": "./src/engine.js",
+    "./terms": "./src/terms.js",
+    "./store": "./src/store.js"
+  },
+  "files": [
+    "src",
+    "cordis.patch.yml",
+    "dsh.plugin.json",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "scripts": {
+    "test": "node --test test/engine.test.js test/pickup.test.js test/store.test.js test/messages.test.js test/deliver.test.js test/index.test.js",
+    "simulate": "node tools/simulate.mjs"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "proactive",
+    "reminder"
+  ],
+  "license": "MIT"
+}
